@@ -31,7 +31,7 @@ def minOperations(n: int) -> int:
                 characters = "H"
             if (len(characters) * 2) < n:
                 characters = copy_all(characters)
-                operations_count += 1
+                operations_count += 2
             else:
                 characters += "H"
                 operations_count += 1
