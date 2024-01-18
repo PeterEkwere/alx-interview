@@ -15,15 +15,12 @@ def minOperations(n: int) -> int:
         int: the fewest of operations
     """
     operations_count = 0
-    characters = "H"
-
-    for i in range(n):
-        if len(characters) == n:
-            return operations_count
-        elif len(characters) < n:
-            if (len(characters) * 2) < n:
-                characters *= 2
-                operations_count += 1
-            else:
-                characters += "H"
-                operations_count += 1
+    
+    while n > 1:
+        for i in range(2, n + 1):
+            if n % i == 0:
+                n //= i
+                operations_count += i
+                break
+    return operations_count
+ 
