@@ -23,7 +23,7 @@ def minOperations(n: int) -> int:
         elif len(characters) < n:
             if (len(characters) * 2) < n:
                 characters *= 2
-                operations_count += 2
+                operations_count += 1
             else:
                 characters += "H"
                 operations_count += 1
