@@ -15,7 +15,7 @@ def minOperations(n: int) -> int:
         int: the fewest of operations
     """
     operations_count = 0
-    
+
     while n > 1:
         for i in range(2, n + 1):
             if n % i == 0:
@@ -23,4 +23,3 @@ def minOperations(n: int) -> int:
                 operations_count += i
                 break
     return operations_count
- 
