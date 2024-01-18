@@ -5,12 +5,6 @@
 """
 
 
-def copy_all(n: str) -> str:
-    """ This function multiplies a string
-    """
-    return n * 2
-
-
 def minOperations(n: int) -> int:
     """ This function calculates the fewest number of operations needed
 
@@ -21,16 +15,14 @@ def minOperations(n: int) -> int:
         int: the fewest of operations
     """
     operations_count = 0
-    characters = ""
+    characters = "H"
 
     for i in range(n):
         if len(characters) == n:
             return operations_count
         elif len(characters) < n:
-            if len(characters) < 1:
-                characters = "H"
             if (len(characters) * 2) < n:
-                characters = copy_all(characters)
+                characters *= 2
                 operations_count += 2
             else:
                 characters += "H"
