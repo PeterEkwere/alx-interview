@@ -1,39 +1,47 @@
 #!/usr/bin/python3
 """
-The N queens puzzle is the challenge of placing N non-attacking queens
-on an NxN chessboard. Write a program that solves the N queens problem.
+    This module contains the Nqueens problem.
+    Author: Peter Ekwere
 """
-
 import sys
 
 
-def queen_down(N, i, queens, final_combo, col, pos, neg):
-    """recursive function to put down non attacking queens"""
-    if len(queens) == N:
-        final_combo.append(queens)
-        return final_combo
+def place_queens(N, i, current_queens, valid_combinations, col, pos, neg):
+    """
+    function to place non-attacking queens
+    """
+    if len(current_queens) == N:
+        valid_combinations.append(current_queens)
+        return valid_combinations
     for j in range(N):
-        if not (j in col or i + j in pos or i - j in neg):
-            queen_down(N, i + 1, queens + [[i, j]], final_combo,
-                       col + [j], pos + [i + j], neg + [i - j])
-    return final_combo
+        if j not in col and i + j not in pos and i - j not in neg:
+            valid_combinations = place_queens(N, i + 1, current_queens
+                                              + [[i, j]], valid_combinations,
+                                              col + [j], pos + [i + j],
+                                              neg + [i - j])
+    return valid_combinations
 
 
-if len(sys.argv) != 2:
-    print("Usage: nqueens N")
-    sys.exit(1)
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        return
 
-try:
-    N = int(sys.argv[1])
-except ValueError:
-    print("N must be a number")
-    sys.exit(1)
+    try:
+        N = int(sys.argv[1])
+    except ValueError:
+        print("N must be a number")
+        return
 
-if N < 4:
-    print("N must be at least 4")
-    sys.exit(1)
-queens = []
-col = pos = neg = []
-queen_down(N, 0, [], queens, col, pos, neg)
-for queen in queens:
-    print(queen)
+    if N < 4:
+        print("N must be at least 4")
+        return
+
+    valid_queen_combinations = []
+    place_queens(N, 0, [], valid_queen_combinations, [], [], [])
+    for queen_combination in valid_queen_combinations:
+        print(queen_combination)
+
+
+if __name__ == "__main__":
+    main()
