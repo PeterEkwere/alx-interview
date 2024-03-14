@@ -1,3 +1,10 @@
+#!/usr/bin/python3
+"""
+    alx interview practice
+    Author: peter ekwere
+"""
+
+
 def is_prime(n):
     """
     Efficiently checks if a number is prime using a loop up to the
